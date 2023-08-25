@@ -88,6 +88,7 @@ const upperCasedCharacters = [
   'Z'
 ];
 
+// Function to prompt user for password options
  function getPasswordOptions() {
   let passLength;
 
@@ -95,8 +96,10 @@ const upperCasedCharacters = [
     passLength = parseInt(prompt(`How long do you want your password to be? (At least 10 characters but no more than 64)`));
 
     if (isNaN(passLength) || passLength < 10 || length > 64) {
-      alert(`Your password length does not meet required range. Only `);
-    } 
+      alert(`Your password length does not meet required range. Enter numbers from 10-64. :D`);
+    } else {
+      break;
+    }
   }
   
   let specialCharacters = confirm(`Do you want to include special characters?`);
@@ -112,6 +115,7 @@ const upperCasedCharacters = [
     specialCharacters = confirm(`Do you want to include special characters?`);
   }
 }
+  
 
 // Function for getting a random element from an array
 function getRandom(arr) {
@@ -120,7 +124,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  
+  getPasswordOptions();
 }
 
 // Get references to the #generate element
