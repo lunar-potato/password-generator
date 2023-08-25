@@ -113,18 +113,44 @@ const upperCasedCharacters = [
     upperCasedCharacters = confirm(`Do you want to include uppercased characters?`);
     numericCharacters = confirm(`Do you want to include numeric characters?`);
     specialCharacters = confirm(`Do you want to include special characters?`);
-  }
+  } 
+  return {passLength, specialCharacters, numericCharacters, lowerCasedCharacters, upperCasedCharacters};
 }
   
-
 // Function for getting a random element from an array
 function getRandom(arr) {
-  
+  let randomI = Math.floor(Math.random() * arr.length);
+  return arr[randomI];
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
+  let passOption = getPasswordOptions();
+  let validCharacters = [];
+
+  if (passOption.lowerCasedCharacters) {
+    validCharacters = validCharacters.concat(lowerCasedCharacters);
+  }
+
+  if (passOption.upperCasedCharacters) {
+    validCharacters = validCharacters.concat(upperCasedCharacters);
+  }
+
+  if (passOption.numericCharacters) {
+    validCharacters = validCharacters.concat(numericCharacters);
+  }
+
+  if (passOption.specialCharacters) {
+    validCharacters = validCharacters.concat(specialCharacters);
+  }
+
+  let generatedPass = '';
+  for (let i = 0; i < passOption.passLength; i++) {
+    const randomChar = getRandom(validCharacters);
+    generatedPass += randomChar;
+  }
+
+  return generatedPass;
 }
 
 // Get references to the #generate element
