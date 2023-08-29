@@ -95,7 +95,7 @@ const upperCasedCharacters = [
   while(true) {
     passLength = parseInt(prompt(`How long do you want your password to be? (At least 10 characters but no more than 64)`));
 
-    if (isNaN(passLength) || passLength < 10 || length > 64) {
+    if (isNaN(passLength) === true || passLength < 10 || passLength > 64) {
       alert(`Your password length does not meet required range. Enter numbers from 10-64. :D`);
     } else {
       break;
@@ -126,27 +126,27 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   let passOption = getPasswordOptions();
-  let validCharacters = [];
+  let validChars = [];
 
   if (passOption.lowerCasedCharacters) {
-    validCharacters = validCharacters.concat(lowerCasedCharacters);
+    validChars = validChars.concat(lowerCasedCharacters);
   }
 
   if (passOption.upperCasedCharacters) {
-    validCharacters = validCharacters.concat(upperCasedCharacters);
+    validChars = validChars.concat(upperCasedCharacters);
   }
 
   if (passOption.numericCharacters) {
-    validCharacters = validCharacters.concat(numericCharacters);
+    validChars = validChars.concat(numericCharacters);
   }
 
   if (passOption.specialCharacters) {
-    validCharacters = validCharacters.concat(specialCharacters);
+    validChars = validChars.concat(specialCharacters);
   }
 
   let generatedPass = '';
   for (let i = 0; i < passOption.passLength; i++) {
-    const randomChar = getRandom(validCharacters);
+    const randomChar = getRandom(validChars);
     generatedPass += randomChar;
   }
 
